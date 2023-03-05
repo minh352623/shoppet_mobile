@@ -1,11 +1,21 @@
 import 'dart:convert';
+import 'package:hive/hive.dart';
+part 'partner.g.dart';
 
 List<Partner> partnerListFromJson(String val) => List<Partner>.from(
     json.decode(val).map((partner)=>Partner.fromJson(partner))
 );
+
+@HiveType(typeId: 2)
+
 class Partner {
+  @HiveField(0)
   final id;
+
+  @HiveField(1)
   final image;
+
+  @HiveField(2)
   final name;
 
 
