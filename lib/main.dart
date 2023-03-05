@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:shoppet/model/ad_banner.dart';
+import 'package:shoppet/model/partner.dart';
+import 'package:shoppet/model/product.dart';
 import 'package:shoppet/route/app_page.dart';
 import 'package:shoppet/route/app_route.dart';
 import 'package:shoppet/theme/app_theme.dart';
 
-void main() {
+void main() async  {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+
+  //register adapters
+  Hive.registerAdapter(AdBannerAdapter());
+  Hive.registerAdapter(PartnerAdapter());
+  Hive.registerAdapter(ProductAdapter());
+
   runApp(const MyApp());
 }
 

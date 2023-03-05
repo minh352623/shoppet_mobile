@@ -85,6 +85,7 @@ class ProductNewCard extends StatelessWidget {
               ),
               const SizedBox(height: 5,),
               Padding(
+
                 padding: const EdgeInsets.only(left:10,bottom: 5),
                 child: Text("\$ "+product.price,style:const TextStyle(
                     color: Colors.black87,

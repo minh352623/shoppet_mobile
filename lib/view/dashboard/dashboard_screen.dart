@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:shoppet/controller/dashboard_controller.dart';
 import 'package:shoppet/view/home/home_screen.dart';
+import 'package:shoppet/view/product/product_screen.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -16,9 +17,7 @@ class DashboardScreen extends StatelessWidget {
             index: controller.tabIndex,
             children: [
               const HomeScreen(),
-              Container(
-                color: Colors.red,
-              ),
+              ProductScreen(),
               Container(
                 color: Colors.blue,
               ),
