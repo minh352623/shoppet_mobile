@@ -1,13 +1,15 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:shoppet/model/product.dart';
 import 'package:shoppet/service/remote_service/remote_product_page_service.dart';
 
 class ProductController extends GetxController{
   static  ProductController instance = Get.find();
+  TextEditingController searchTextEditController = TextEditingController();
   RxList<Product> productList = List<Product>.empty(growable: true).obs;
-
+  RxString searchVal = ''.obs;
   RxBool isProductLoading = false.obs;
 
 
@@ -47,6 +49,23 @@ class ProductController extends GetxController{
 
 
       isProductLoading(false);
+    }
+  }
+
+
+  void getProductByName({required String keyword})async{
+    try{
+      isProductLoading(true);
+
+      var result = await RemoteProductPageService().getByName(keyword: keyword);
+      if(result != null){
+        productList.assignAll(productListPageFromJson((result.body)));
+
+      }
+    }finally{
+      print(productList.length);
+      isProductLoading(false);
+
     }
   }
 }

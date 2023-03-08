@@ -12,6 +12,8 @@ class ProductNewCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
+        FocusScope.of(context).requestFocus(FocusNode());
+
         Navigator.push(context, MaterialPageRoute(builder: (context)=>ProductDetailScreen(product:product)));
       },
       child: Padding(
