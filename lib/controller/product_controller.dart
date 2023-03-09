@@ -1,11 +1,15 @@
+import 'dart:convert';
+
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:shoppet/model/product.dart';
 import 'package:shoppet/service/remote_service/remote_product_page_service.dart';
 
 class ProductController extends GetxController{
   static  ProductController instance = Get.find();
+  TextEditingController searchTextEditController = TextEditingController();
   RxList<Product> productList = List<Product>.empty(growable: true).obs;
-
+  RxString searchVal = ''.obs;
   RxBool isProductLoading = false.obs;
 
 
@@ -24,6 +28,14 @@ class ProductController extends GetxController{
 
       if (result != null) {
 
+        // for (var familyMember in jsonDecode(result.body)) { //prints the name of each family member
+        //   var familyMemberName = familyMember["images"];
+        //   for (var image in familyMemberName) {
+        //     print(image['image_path']);
+        //
+        //   }
+        // }
+
 
         productList.assignAll(productListPageFromJson((result.body)));
 
@@ -33,11 +45,27 @@ class ProductController extends GetxController{
     } on Exception catch (e){
       print(e);
     }finally{
-      print( productList.length);
 
 
 
       isProductLoading(false);
+    }
+  }
+
+
+  void getProductByName({required String keyword})async{
+    try{
+      isProductLoading(true);
+
+      var result = await RemoteProductPageService().getByName(keyword: keyword);
+      if(result != null){
+        productList.assignAll(productListPageFromJson((result.body)));
+
+      }
+    }finally{
+      print(productList.length);
+      isProductLoading(false);
+
     }
   }
 }
