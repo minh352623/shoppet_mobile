@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:shoppet/controller/dashboard_controller.dart';
+import 'package:shoppet/view/account/account_screen.dart';
+import 'package:shoppet/view/category/category_screen.dart';
 import 'package:shoppet/view/home/home_screen.dart';
 import 'package:shoppet/view/product/product_screen.dart';
 
@@ -18,10 +20,8 @@ class DashboardScreen extends StatelessWidget {
             children: [
               const HomeScreen(),
               ProductScreen(),
-              Container(
-                color: Colors.blue,
-              ),
-              Container(color: Colors.orange),
+              CategoryView(),
+              AccountScreen(),
             ],
           ),
         ),
