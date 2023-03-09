@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:badges/src/badge.dart' as badge;
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
+import 'package:shoppet/controller/controllers.dart';
 class MainHeader extends StatelessWidget {
   const MainHeader({Key? key}) : super(key: key);
 
@@ -20,28 +22,39 @@ class MainHeader extends StatelessWidget {
       child: Row(
         children: [
           Expanded(child: Container(
-            child: TextField(
+            child:Obx(()=> TextField(
               autofocus: false,
-              onSubmitted: (val){},
+              controller: productController.searchTextEditController,
+              onSubmitted: (val){
+                productController.getProductByName(keyword: val);
+                dashboardController.updateIndex(1);
+              },
               onChanged: (val){
-                print(val);
+                productController.searchVal.value = val;
+
               },
               decoration: InputDecoration(
+                suffixIcon: productController.searchVal.value.isNotEmpty ? IconButton(onPressed: (){
+                  FocusScope.of(context).requestFocus(FocusScopeNode());
+                  productController.searchTextEditController.clear();
+                  productController.searchVal.value ="";
+                  productController.getBestSalerProducts();
+                }, icon: const Icon(Icons.clear)):null,
                   contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 14,
-                    vertical: 16
+                      horizontal: 14,
+                      vertical: 16
 
                   ),
-                fillColor: Colors.white,
-                filled: true,
-                border:OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(24),
-                  borderSide: BorderSide.none
-                ),
-                hintText: "Search..",
+                  fillColor: Colors.white,
+                  filled: true,
+                  border:OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(24),
+                      borderSide: BorderSide.none
+                  ),
+                  hintText: "Search..",
                   prefixIcon: const Icon(Icons.search)
               ),
-            ),
+            )),
           )),
           const SizedBox(width:10),
           Container(

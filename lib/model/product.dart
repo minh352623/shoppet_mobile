@@ -36,21 +36,32 @@ class Product {
   @HiveField(5)
   final  start;
 
-  // @HiveField(5)
-  // final List<String> images;
+  @HiveField(6)
+  final   description;
+  // @HiveField(6)
+  // final  List<String> images ;
 
 
-  Product({required this.name,required this.id,required this.price,required this.image,required this.number,required this.start});
+  Product({required this.name,required this.id,required this.price,required this.image,required this.number,required this.start,required this.description});
 
-  factory Product.fromJson(Map<String,dynamic> data) => Product(id: data['id'], image: data['file_path'],name:data['name'],price: data['price'],number:data['number'], start: data['start']?.isEmpty  ? data['start'] : '0');
+  factory Product.fromJson(Map<String,dynamic> data) => Product(description: data['description'],id: data['id'], image: data['file_path'],name:data['name'],price: data['price'],number:data['number'], start: data['start']?.isEmpty  ? data['start'] : '0',
+
+
+    // images:data['images'] != null ? List<String>.from(data['imageDetail'].map((image) => image['image_path'])):[],
+
+  );
 
 
   factory Product.fromJsonPageProduct(Map<String,dynamic> data) => Product(
-
+      description: data['description'],
+      id: data['id'], image: data['file_path'],
+      name:data['name'],price: data['price'],number:data['number'],
       start:data['start']?.isEmpty? data['start'] : '0',
 
-      id: data['id'], image: data['file_path'],
-      name:data['name'],price: data['price'],number:data['number']);
+      // images:data['images'] != null ? List<String>.from(data['imageDetail'].map((image) => image['image_path'])):[]
+
+  );
+
 
 
 }
