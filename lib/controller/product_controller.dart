@@ -68,4 +68,17 @@ class ProductController extends GetxController{
 
     }
   }
+
+  void getProductByCategory({required int id}) async {
+    try {
+      isProductLoading(true);
+      var result = await RemoteProductPageService().getByCategory(id: id);
+      if(result != null){
+        productList.assignAll(productListFromJson(result.body));
+      }
+    } finally {
+      isProductLoading(false);
+      print(productList.length);
+    }
+  }
 }

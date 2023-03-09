@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shoppet/model/ad_banner.dart';
@@ -16,7 +17,7 @@ void main() async  {
   Hive.registerAdapter(AdBannerAdapter());
   Hive.registerAdapter(PartnerAdapter());
   Hive.registerAdapter(ProductAdapter());
-
+  configLoading();
   runApp(const MyApp());
 }
 
@@ -32,6 +33,24 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       themeMode: ThemeMode.light,
+      builder: EasyLoading.init(),
     );
   }
+}
+
+
+void configLoading(){
+  EasyLoading.instance
+    ..displayDuration = const Duration(milliseconds: 2000)
+    ..indicatorType = EasyLoadingIndicatorType.fadingCircle
+    ..loadingStyle = EasyLoadingStyle.dark
+    ..indicatorSize = 45.0
+    ..radius = 10.0
+    ..progressColor = Colors.yellow
+    ..backgroundColor = Colors.green
+    ..indicatorColor = Colors.yellow
+    ..textColor = Colors.yellow
+    ..maskColor = Colors.blue.withOpacity(0.5)
+    ..userInteractions = true
+    ..dismissOnTap = true;
 }

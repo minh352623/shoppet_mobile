@@ -1,5 +1,6 @@
 
 
+import 'package:shoppet/controller/auth_controller.dart';
 import 'package:shoppet/controller/category_controller.dart';
 import 'package:shoppet/controller/dashboard_controller.dart';
 import 'package:shoppet/controller/home_controller.dart';
@@ -13,3 +14,5 @@ ProductController productController = ProductController.instance;
 DashboardController dashboardController = DashboardController.instance;
 
 CategoryController categoryController = CategoryController.instance;
+
+AuthController authController = AuthController.instance;
