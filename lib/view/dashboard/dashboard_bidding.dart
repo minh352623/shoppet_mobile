@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:shoppet/controller/auth_controller.dart';
 import 'package:shoppet/controller/category_controller.dart';
 import 'package:shoppet/controller/dashboard_controller.dart';
 import 'package:shoppet/controller/home_controller.dart';
@@ -12,6 +13,7 @@ class DashboardBidding extends Bindings{
     Get.put(HomeController());
     Get.put(ProductController());
     Get.put(CategoryController());
+    Get.put(AuthController());
 
   }
 

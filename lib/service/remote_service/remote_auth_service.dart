@@ -40,7 +40,7 @@ class RemoteAuthService {
       'Accept': 'application/json',
       // 'Authorization': 'Bearer 733|mOyRV6LDndQZB8LkJuuB9XjYdKMU5SjG7cpZzXJu',
     },body:jsonEncode(body));
-    print('Response body: ${response.body}');
+    // print('Response body: ${response.body}');
     return response;
   }
 }

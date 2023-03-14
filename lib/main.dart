@@ -5,6 +5,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shoppet/model/ad_banner.dart';
 import 'package:shoppet/model/partner.dart';
 import 'package:shoppet/model/product.dart';
+import 'package:shoppet/model/user.dart';
 import 'package:shoppet/route/app_page.dart';
 import 'package:shoppet/route/app_route.dart';
 import 'package:shoppet/theme/app_theme.dart';
@@ -17,6 +18,8 @@ void main() async  {
   Hive.registerAdapter(AdBannerAdapter());
   Hive.registerAdapter(PartnerAdapter());
   Hive.registerAdapter(ProductAdapter());
+  Hive.registerAdapter(UserAdapter());
+
   configLoading();
   runApp(const MyApp());
 }
